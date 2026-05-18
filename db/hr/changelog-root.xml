@@ -8,5 +8,6 @@
 
   <!-- Baseline include will be added after first generate-changelog -->
   <include file="changes/000-baseline.xml" relativeToChangelogFile="true"/>
+  <include file="changes/001-lb-demo-customer.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
