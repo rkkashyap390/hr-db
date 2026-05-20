@@ -1,0 +1,8 @@
+--liquibase formatted sql
+--changeset hr-db:001-insert-lb-demo-orders
+
+INSERT INTO LB_DEMO_ORDERS (ORDER_ID, CUSTOMER_NAME, ORDER_STATUS, ORDER_TOTAL)
+VALUES (1001, 'Alice Johnson', 'NEW', 149.99);
+
+INSERT INTO LB_DEMO_ORDERS (ORDER_ID, CUSTOMER_NAME, ORDER_STATUS, ORDER_TOTAL)
+VALUES (1002, 'Bob Smith', 'PAID', 299.50);
