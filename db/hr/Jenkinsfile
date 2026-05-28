@@ -1,0 +1,330 @@
+﻿pipeline {
+  agent any
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+  }
+
+  environment {
+    LOCAL_REPO_PATH = 'C:\\Users\\Rishikant Kashyap\\hr-db'
+    CHANGELOG_FILE  = 'db/hr/changelog-root.xml'
+    SQLCL_EXE       = 'C:\\tools\\sqlcl\\bin\\sql.exe'
+    SQLPLUS_EXE     = 'C:\\app\\dbhomeFree\\bin\\sqlplus.exe'
+    TNS_ADMIN_DIR   = 'C:\\app\\dbhomeFree\\network\\admin'
+    HR_CONNECT      = 'HR/12345678@//127.0.0.1:1521/freepdb1'
+    HRSIT_CONNECT   = 'HR_SIT/12345678@//127.0.0.1:1521/freepdb1'
+    DEPLOY_HR       = 'true'
+    DEPLOY_HRSIT    = 'true'
+  }
+
+  stages {
+    stage('Print Config') {
+      steps {
+        echo "=== Jenkins Hardcoded Config ==="
+        echo "LOCAL_REPO_PATH : ${env.LOCAL_REPO_PATH}"
+        echo "CHANGELOG_FILE  : ${env.CHANGELOG_FILE}"
+        echo "SQLCL_EXE       : ${env.SQLCL_EXE}"
+        echo "SQLPLUS_EXE     : ${env.SQLPLUS_EXE}"
+        echo "TNS_ADMIN_DIR   : ${env.TNS_ADMIN_DIR}"
+        echo "HR_CONNECT      : ${env.HR_CONNECT}"
+        echo "HRSIT_CONNECT   : ${env.HRSIT_CONNECT}"
+        echo "DEPLOY_HR       : ${env.DEPLOY_HR}"
+        echo "DEPLOY_HRSIT    : ${env.DEPLOY_HRSIT}"
+        echo "================================"
+      }
+    }
+
+    stage('Validate Inputs') {
+      steps {
+        script {
+          if (!env.LOCAL_REPO_PATH?.trim()) { error('LOCAL_REPO_PATH is empty') }
+          if (!env.CHANGELOG_FILE?.trim())  { error('CHANGELOG_FILE is empty') }
+          if (!env.SQLCL_EXE?.trim())       { error('SQLCL_EXE is empty') }
+          if (!env.SQLPLUS_EXE?.trim())     { error('SQLPLUS_EXE is empty') }
+          if (!env.TNS_ADMIN_DIR?.trim())   { error('TNS_ADMIN_DIR is empty') }
+          if (env.DEPLOY_HR == 'true' && !env.HR_CONNECT?.trim()) { error('HR_CONNECT is empty') }
+          if (env.DEPLOY_HRSIT == 'true' && !env.HRSIT_CONNECT?.trim()) { error('HRSIT_CONNECT is empty') }
+        }
+      }
+    }
+
+    stage('Prepare Workspace') {
+      steps {
+        deleteDir()
+      }
+    }
+
+    stage('Copy Local Repo') {
+      steps {
+        powershell '''
+          $ErrorActionPreference = "Stop"
+          $src = "${env:LOCAL_REPO_PATH}".Trim()
+          $dst = "${env:WORKSPACE}"
+
+          Write-Host "Copy source: $src"
+          Write-Host "Copy target: $dst"
+
+          if ([string]::IsNullOrWhiteSpace($src)) { throw "LOCAL_REPO_PATH is empty." }
+          if (-not (Test-Path -LiteralPath $src)) { throw "Source not found: $src" }
+
+          Write-Host "Source listing (top-level):"
+          Get-ChildItem -LiteralPath $src -Force | Select-Object -First 20 | ForEach-Object { Write-Host " - $($_.Name)" }
+
+          & robocopy "$src" "$dst" /MIR /NFL /NDL /NJH /NJS /NP
+          $rc = $LASTEXITCODE
+          Write-Host "robocopy exit code: $rc"
+
+          if ($rc -gt 7) { throw "robocopy failed with exit code $rc" }
+
+          $global:LASTEXITCODE = 0
+          exit 0
+        '''
+      }
+    }
+
+    stage('Check SQLcl') {
+      steps {
+        powershell '''
+          $ErrorActionPreference = "Stop"
+          $sqlExe = "${env:SQLCL_EXE}".Trim()
+          $tnsAdmin = "${env:TNS_ADMIN_DIR}".Trim()
+
+          Write-Host "SQLcl executable: $sqlExe"
+          Write-Host "TNS_ADMIN: $tnsAdmin"
+
+          if (-not (Test-Path -LiteralPath $sqlExe)) { throw "SQLcl executable not found: $sqlExe" }
+          if (-not (Test-Path -LiteralPath $tnsAdmin)) { throw "TNS_ADMIN folder not found: $tnsAdmin" }
+
+          $tnsFile = Join-Path $tnsAdmin 'tnsnames.ora'
+          if (-not (Test-Path -LiteralPath $tnsFile)) { throw "tnsnames.ora not found at: $tnsFile" }
+
+          $noisePatterns = @(
+            'org.jline.utils.Log logr',
+            'Failed to save history',
+            'UserPrincipalNotFoundException',
+            'oracle.dbtools.raptor.console.impl.SqlclHistory',
+            'at oracle.dbtools.',
+            'at java.base/sun.nio.fs.Windows'
+          )
+
+          $env:TNS_ADMIN = $tnsAdmin
+          $outFile = Join-Path $env:WORKSPACE 'sqlcl-version.out'
+          $errFile = Join-Path $env:WORKSPACE 'sqlcl-version.err'
+          if (Test-Path $outFile) { Remove-Item -LiteralPath $outFile -Force }
+          if (Test-Path $errFile) { Remove-Item -LiteralPath $errFile -Force }
+
+          $proc = Start-Process -FilePath $sqlExe -ArgumentList @('-nohistory','-V') -NoNewWindow -Wait -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
+          $exitCode = $proc.ExitCode
+
+          $lines = @()
+          if (Test-Path $outFile) { $lines += Get-Content -LiteralPath $outFile }
+          if (Test-Path $errFile) { $lines += Get-Content -LiteralPath $errFile }
+
+          foreach ($line in $lines) {
+            $txt = $line.ToString()
+            $isNoise = $false
+            foreach ($p in $noisePatterns) {
+              if ($txt -like "*$p*") { $isNoise = $true; break }
+            }
+            if (-not $isNoise) { Write-Host $txt }
+          }
+
+          if ($exitCode -ne 0) { throw "SQLcl version check failed" }
+
+          $changelog = Join-Path "${env:WORKSPACE}" "${env:CHANGELOG_FILE}"
+          Write-Host "Checking changelog path: $changelog"
+          if (-not (Test-Path -LiteralPath $changelog)) { throw "Changelog not found: $changelog" }
+        '''
+      }
+    }
+
+    stage('Deploy HR') {
+      when { expression { return env.DEPLOY_HR == 'true' } }
+      steps {
+        powershell '''
+          $ErrorActionPreference = "Stop"
+          $sqlExe = "${env:SQLCL_EXE}".Trim()
+          $sqlplusExe = "${env:SQLPLUS_EXE}".Trim()
+          $env:TNS_ADMIN = "${env:TNS_ADMIN_DIR}".Trim()
+          Set-Location "${env:WORKSPACE}"
+
+          if (-not (Test-Path -LiteralPath $sqlplusExe)) {
+            throw "SQLPlus executable not found: $sqlplusExe"
+          }
+
+          $sysSql = @"
+whenever oserror exit failure
+whenever sqlerror continue
+connect / as sysdba
+begin
+  execute immediate 'alter pluggable database FREEPDB1 open';
+exception
+  when others then
+    if sqlcode != -65019 then
+      raise;
+    end if;
+end;
+/
+alter system register;
+alter session set container=FREEPDB1;
+alter system register;
+whenever sqlerror exit failure
+exit success
+"@
+          $sysScript = Join-Path $env:WORKSPACE "ensure-freepdb1-hr.sql"
+          Set-Content -LiteralPath $sysScript -Value $sysSql -Encoding Ascii
+          Write-Host "Preparing FREEPDB1 in SQLPlus before HR deploy..."
+          $sysOut = Join-Path $env:WORKSPACE 'ensure-freepdb1-hr.out'
+          $sysErr = Join-Path $env:WORKSPACE 'ensure-freepdb1-hr.err'
+          if (Test-Path $sysOut) { Remove-Item -LiteralPath $sysOut -Force }
+          if (Test-Path $sysErr) { Remove-Item -LiteralPath $sysErr -Force }
+          $sysProc = Start-Process -FilePath $sqlplusExe -ArgumentList @('-L','/nolog',"@$sysScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $sysOut -RedirectStandardError $sysErr
+          if (Test-Path $sysOut) { Get-Content -LiteralPath $sysOut | ForEach-Object { Write-Host $_ } }
+          if (Test-Path $sysErr) { Get-Content -LiteralPath $sysErr | ForEach-Object { Write-Host $_ } }
+          if ($sysProc.ExitCode -ne 0) { throw "SQLPlus pre-step failed for HR deploy" }
+
+          $sqlBlock = @"
+whenever oserror exit failure
+whenever sqlerror exit failure
+connect ${env:HR_CONNECT}
+lb validate -changelog-file ${env:CHANGELOG_FILE}
+lb update-sql -changelog-file ${env:CHANGELOG_FILE}
+lb update -changelog-file ${env:CHANGELOG_FILE}
+exit success
+"@
+
+          $tmpScript = Join-Path $env:WORKSPACE "lb-hr.sql"
+          Set-Content -LiteralPath $tmpScript -Value $sqlBlock -Encoding Ascii
+
+          $noisePatterns = @(
+            'org.jline.utils.Log logr',
+            'Failed to save history',
+            'UserPrincipalNotFoundException',
+            'oracle.dbtools.raptor.console.impl.SqlclHistory',
+            'at oracle.dbtools.',
+            'at java.base/sun.nio.fs.Windows'
+          )
+
+          Write-Host "Running Liquibase for HR..."
+          $outFile = Join-Path $env:WORKSPACE 'lb-hr.out'
+          $errFile = Join-Path $env:WORKSPACE 'lb-hr.err'
+          if (Test-Path $outFile) { Remove-Item -LiteralPath $outFile -Force }
+          if (Test-Path $errFile) { Remove-Item -LiteralPath $errFile -Force }
+
+          $proc = Start-Process -FilePath $sqlExe -ArgumentList @('-S','-thin','-nohistory','/nolog',"@$tmpScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
+          $exitCode = $proc.ExitCode
+
+          $lines = @()
+          if (Test-Path $outFile) { $lines += Get-Content -LiteralPath $outFile }
+          if (Test-Path $errFile) { $lines += Get-Content -LiteralPath $errFile }
+
+          foreach ($line in $lines) {
+            $txt = $line.ToString()
+            $isNoise = $false
+            foreach ($p in $noisePatterns) {
+              if ($txt -like "*$p*") { $isNoise = $true; break }
+            }
+            if (-not $isNoise) { Write-Host $txt }
+          }
+
+          if ($exitCode -ne 0) { throw "Liquibase failed on HR" }
+        '''
+      }
+    }
+
+    stage('Deploy HR_SIT') {
+      when { expression { return env.DEPLOY_HRSIT == 'true' } }
+      steps {
+        powershell '''
+          $ErrorActionPreference = "Stop"
+          $sqlExe = "${env:SQLCL_EXE}".Trim()
+          $sqlplusExe = "${env:SQLPLUS_EXE}".Trim()
+          $env:TNS_ADMIN = "${env:TNS_ADMIN_DIR}".Trim()
+          Set-Location "${env:WORKSPACE}"
+
+          if (-not (Test-Path -LiteralPath $sqlplusExe)) {
+            throw "SQLPlus executable not found: $sqlplusExe"
+          }
+
+          $sysSql = @"
+whenever oserror exit failure
+whenever sqlerror continue
+connect / as sysdba
+begin
+  execute immediate 'alter pluggable database FREEPDB1 open';
+exception
+  when others then
+    if sqlcode != -65019 then
+      raise;
+    end if;
+end;
+/
+alter system register;
+alter session set container=FREEPDB1;
+alter system register;
+whenever sqlerror exit failure
+exit success
+"@
+          $sysScript = Join-Path $env:WORKSPACE "ensure-freepdb1-hrsit.sql"
+          Set-Content -LiteralPath $sysScript -Value $sysSql -Encoding Ascii
+          Write-Host "Preparing FREEPDB1 in SQLPlus before HR_SIT deploy..."
+          $sysOut = Join-Path $env:WORKSPACE 'ensure-freepdb1-hrsit.out'
+          $sysErr = Join-Path $env:WORKSPACE 'ensure-freepdb1-hrsit.err'
+          if (Test-Path $sysOut) { Remove-Item -LiteralPath $sysOut -Force }
+          if (Test-Path $sysErr) { Remove-Item -LiteralPath $sysErr -Force }
+          $sysProc = Start-Process -FilePath $sqlplusExe -ArgumentList @('-L','/nolog',"@$sysScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $sysOut -RedirectStandardError $sysErr
+          if (Test-Path $sysOut) { Get-Content -LiteralPath $sysOut | ForEach-Object { Write-Host $_ } }
+          if (Test-Path $sysErr) { Get-Content -LiteralPath $sysErr | ForEach-Object { Write-Host $_ } }
+          if ($sysProc.ExitCode -ne 0) { throw "SQLPlus pre-step failed for HR_SIT deploy" }
+
+          $sqlBlock = @"
+whenever oserror exit failure
+whenever sqlerror exit failure
+connect ${env:HRSIT_CONNECT}
+lb validate -changelog-file ${env:CHANGELOG_FILE}
+lb update-sql -changelog-file ${env:CHANGELOG_FILE}
+lb update -changelog-file ${env:CHANGELOG_FILE}
+exit success
+"@
+
+          $tmpScript = Join-Path $env:WORKSPACE "lb-hrsit.sql"
+          Set-Content -LiteralPath $tmpScript -Value $sqlBlock -Encoding Ascii
+
+          $noisePatterns = @(
+            'org.jline.utils.Log logr',
+            'Failed to save history',
+            'UserPrincipalNotFoundException',
+            'oracle.dbtools.raptor.console.impl.SqlclHistory',
+            'at oracle.dbtools.',
+            'at java.base/sun.nio.fs.Windows'
+          )
+
+          Write-Host "Running Liquibase for HR_SIT..."
+          $outFile = Join-Path $env:WORKSPACE 'lb-hrsit.out'
+          $errFile = Join-Path $env:WORKSPACE 'lb-hrsit.err'
+          if (Test-Path $outFile) { Remove-Item -LiteralPath $outFile -Force }
+          if (Test-Path $errFile) { Remove-Item -LiteralPath $errFile -Force }
+
+          $proc = Start-Process -FilePath $sqlExe -ArgumentList @('-S','-thin','-nohistory','/nolog',"@$tmpScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
+          $exitCode = $proc.ExitCode
+
+          $lines = @()
+          if (Test-Path $outFile) { $lines += Get-Content -LiteralPath $outFile }
+          if (Test-Path $errFile) { $lines += Get-Content -LiteralPath $errFile }
+
+          foreach ($line in $lines) {
+            $txt = $line.ToString()
+            $isNoise = $false
+            foreach ($p in $noisePatterns) {
+              if ($txt -like "*$p*") { $isNoise = $true; break }
+            }
+            if (-not $isNoise) { Write-Host $txt }
+          }
+
+          if ($exitCode -ne 0) { throw "Liquibase failed on HR_SIT" }
+        '''
+      }
+    }
+  }
+}

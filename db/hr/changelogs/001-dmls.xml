@@ -6,4 +6,5 @@
   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
   <include file="./dml/001-insert-lb-demo-orders.sql" relativeToChangelogFile="true"/>
+  <include file="./dml/002-insert-lb-demo-orders.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
