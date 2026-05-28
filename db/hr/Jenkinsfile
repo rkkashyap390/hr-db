@@ -7,7 +7,9 @@
   }
 
   environment {
-    LOCAL_REPO_PATH = 'C:\\Users\\Rishikant Kashyap\\hr-db'
+    GIT_REPO_URL    = 'https://github.com/rkkashyap390/hr-db.git'
+    GIT_BRANCH      = 'main'
+    GIT_CRED_ID     = 'github-hr-db-pat'
     CHANGELOG_FILE  = 'db/hr/changelog-root.xml'
     SQLCL_EXE       = 'C:\\tools\\sqlcl\\bin\\sql.exe'
     SQLPLUS_EXE     = 'C:\\app\\dbhomeFree\\bin\\sqlplus.exe'
@@ -22,7 +24,9 @@
     stage('Print Config') {
       steps {
         echo "=== Jenkins Hardcoded Config ==="
-        echo "LOCAL_REPO_PATH : ${env.LOCAL_REPO_PATH}"
+        echo "GIT_REPO_URL    : ${env.GIT_REPO_URL}"
+        echo "GIT_BRANCH      : ${env.GIT_BRANCH}"
+        echo "GIT_CRED_ID     : ${env.GIT_CRED_ID}"
         echo "CHANGELOG_FILE  : ${env.CHANGELOG_FILE}"
         echo "SQLCL_EXE       : ${env.SQLCL_EXE}"
         echo "SQLPLUS_EXE     : ${env.SQLPLUS_EXE}"
@@ -38,7 +42,9 @@
     stage('Validate Inputs') {
       steps {
         script {
-          if (!env.LOCAL_REPO_PATH?.trim()) { error('LOCAL_REPO_PATH is empty') }
+          if (!env.GIT_REPO_URL?.trim())    { error('GIT_REPO_URL is empty') }
+          if (!env.GIT_BRANCH?.trim())      { error('GIT_BRANCH is empty') }
+          if (!env.GIT_CRED_ID?.trim())     { error('GIT_CRED_ID is empty') }
           if (!env.CHANGELOG_FILE?.trim())  { error('CHANGELOG_FILE is empty') }
           if (!env.SQLCL_EXE?.trim())       { error('SQLCL_EXE is empty') }
           if (!env.SQLPLUS_EXE?.trim())     { error('SQLPLUS_EXE is empty') }
@@ -55,30 +61,22 @@
       }
     }
 
-    stage('Copy Local Repo') {
+    stage('Checkout Repo') {
       steps {
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: "*/${env.GIT_BRANCH}"]],
+          doGenerateSubmoduleConfigurations: false,
+          extensions: [[$class: 'CleanBeforeCheckout']],
+          userRemoteConfigs: [[
+            url: "${env.GIT_REPO_URL}",
+            credentialsId: "${env.GIT_CRED_ID}"
+          ]]
+        ])
+
         powershell '''
-          $ErrorActionPreference = "Stop"
-          $src = "${env:LOCAL_REPO_PATH}".Trim()
-          $dst = "${env:WORKSPACE}"
-
-          Write-Host "Copy source: $src"
-          Write-Host "Copy target: $dst"
-
-          if ([string]::IsNullOrWhiteSpace($src)) { throw "LOCAL_REPO_PATH is empty." }
-          if (-not (Test-Path -LiteralPath $src)) { throw "Source not found: $src" }
-
-          Write-Host "Source listing (top-level):"
-          Get-ChildItem -LiteralPath $src -Force | Select-Object -First 20 | ForEach-Object { Write-Host " - $($_.Name)" }
-
-          & robocopy "$src" "$dst" /MIR /NFL /NDL /NJH /NJS /NP
-          $rc = $LASTEXITCODE
-          Write-Host "robocopy exit code: $rc"
-
-          if ($rc -gt 7) { throw "robocopy failed with exit code $rc" }
-
-          $global:LASTEXITCODE = 0
-          exit 0
+          Write-Host "Checked out repository into workspace:"
+          Get-ChildItem -LiteralPath "${env:WORKSPACE}" -Force | Select-Object -First 20 | ForEach-Object { Write-Host " - $($_.Name)" }
         '''
       }
     }
