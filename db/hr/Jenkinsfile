@@ -14,10 +14,8 @@
     SQLCL_EXE       = 'C:\\tools\\sqlcl\\bin\\sql.exe'
     SQLPLUS_EXE     = 'C:\\app\\dbhomeFree\\bin\\sqlplus.exe'
     TNS_ADMIN_DIR   = 'C:\\app\\dbhomeFree\\network\\admin'
-    HR_CONNECT      = 'HR/12345678@//127.0.0.1:1521/freepdb1'
-    HRSIT_CONNECT   = 'HR_SIT/12345678@//127.0.0.1:1521/freepdb1'
-    DEPLOY_HR       = 'true'
-    DEPLOY_HRSIT    = 'true'
+    SIT2_CONNECT    = 'HR_SIT/12345678@//127.0.0.1:1521/freepdb1'
+    DEPLOY_SIT2     = 'true'
   }
 
   stages {
@@ -31,10 +29,8 @@
         echo "SQLCL_EXE       : ${env.SQLCL_EXE}"
         echo "SQLPLUS_EXE     : ${env.SQLPLUS_EXE}"
         echo "TNS_ADMIN_DIR   : ${env.TNS_ADMIN_DIR}"
-        echo "HR_CONNECT      : ${env.HR_CONNECT}"
-        echo "HRSIT_CONNECT   : ${env.HRSIT_CONNECT}"
-        echo "DEPLOY_HR       : ${env.DEPLOY_HR}"
-        echo "DEPLOY_HRSIT    : ${env.DEPLOY_HRSIT}"
+        echo "SIT2_CONNECT    : ${env.SIT2_CONNECT}"
+        echo "DEPLOY_SIT2     : ${env.DEPLOY_SIT2}"
         echo "================================"
       }
     }
@@ -49,8 +45,7 @@
           if (!env.SQLCL_EXE?.trim())       { error('SQLCL_EXE is empty') }
           if (!env.SQLPLUS_EXE?.trim())     { error('SQLPLUS_EXE is empty') }
           if (!env.TNS_ADMIN_DIR?.trim())   { error('TNS_ADMIN_DIR is empty') }
-          if (env.DEPLOY_HR == 'true' && !env.HR_CONNECT?.trim()) { error('HR_CONNECT is empty') }
-          if (env.DEPLOY_HRSIT == 'true' && !env.HRSIT_CONNECT?.trim()) { error('HRSIT_CONNECT is empty') }
+          if (env.DEPLOY_SIT2 == 'true' && !env.SIT2_CONNECT?.trim()) { error('SIT2_CONNECT is empty') }
         }
       }
     }
@@ -137,8 +132,8 @@
       }
     }
 
-    stage('Deploy HR') {
-      when { expression { return env.DEPLOY_HR == 'true' } }
+    stage('Deploy SIT2') {
+      when { expression { return env.DEPLOY_SIT2 == 'true' } }
       steps {
         powershell '''
           $ErrorActionPreference = "Stop"
@@ -170,29 +165,29 @@ alter system register;
 whenever sqlerror exit failure
 exit success
 "@
-          $sysScript = Join-Path $env:WORKSPACE "ensure-freepdb1-hr.sql"
+          $sysScript = Join-Path $env:WORKSPACE "ensure-freepdb1-sit2.sql"
           Set-Content -LiteralPath $sysScript -Value $sysSql -Encoding Ascii
-          Write-Host "Preparing FREEPDB1 in SQLPlus before HR deploy..."
-          $sysOut = Join-Path $env:WORKSPACE 'ensure-freepdb1-hr.out'
-          $sysErr = Join-Path $env:WORKSPACE 'ensure-freepdb1-hr.err'
+          Write-Host "Preparing FREEPDB1 in SQLPlus before SIT2 deploy..."
+          $sysOut = Join-Path $env:WORKSPACE 'ensure-freepdb1-sit2.out'
+          $sysErr = Join-Path $env:WORKSPACE 'ensure-freepdb1-sit2.err'
           if (Test-Path $sysOut) { Remove-Item -LiteralPath $sysOut -Force }
           if (Test-Path $sysErr) { Remove-Item -LiteralPath $sysErr -Force }
           $sysProc = Start-Process -FilePath $sqlplusExe -ArgumentList @('-L','/nolog',"@$sysScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $sysOut -RedirectStandardError $sysErr
           if (Test-Path $sysOut) { Get-Content -LiteralPath $sysOut | ForEach-Object { Write-Host $_ } }
           if (Test-Path $sysErr) { Get-Content -LiteralPath $sysErr | ForEach-Object { Write-Host $_ } }
-          if ($sysProc.ExitCode -ne 0) { throw "SQLPlus pre-step failed for HR deploy" }
+          if ($sysProc.ExitCode -ne 0) { throw "SQLPlus pre-step failed for SIT2 deploy" }
 
           $sqlBlock = @"
 whenever oserror exit failure
 whenever sqlerror exit failure
-connect ${env:HR_CONNECT}
+connect ${env:SIT2_CONNECT}
 lb validate -changelog-file ${env:CHANGELOG_FILE}
 lb update-sql -changelog-file ${env:CHANGELOG_FILE}
 lb update -changelog-file ${env:CHANGELOG_FILE}
 exit success
 "@
 
-          $tmpScript = Join-Path $env:WORKSPACE "lb-hr.sql"
+          $tmpScript = Join-Path $env:WORKSPACE "lb-sit2.sql"
           Set-Content -LiteralPath $tmpScript -Value $sqlBlock -Encoding Ascii
 
           $noisePatterns = @(
@@ -204,9 +199,9 @@ exit success
             'at java.base/sun.nio.fs.Windows'
           )
 
-          Write-Host "Running Liquibase for HR..."
-          $outFile = Join-Path $env:WORKSPACE 'lb-hr.out'
-          $errFile = Join-Path $env:WORKSPACE 'lb-hr.err'
+          Write-Host "Running Liquibase for SIT2..."
+          $outFile = Join-Path $env:WORKSPACE 'lb-sit2.out'
+          $errFile = Join-Path $env:WORKSPACE 'lb-sit2.err'
           if (Test-Path $outFile) { Remove-Item -LiteralPath $outFile -Force }
           if (Test-Path $errFile) { Remove-Item -LiteralPath $errFile -Force }
 
@@ -226,103 +221,10 @@ exit success
             if (-not $isNoise) { Write-Host $txt }
           }
 
-          if ($exitCode -ne 0) { throw "Liquibase failed on HR" }
-        '''
-      }
-    }
-
-    stage('Deploy HR_SIT') {
-      when { expression { return env.DEPLOY_HRSIT == 'true' } }
-      steps {
-        powershell '''
-          $ErrorActionPreference = "Stop"
-          $sqlExe = "${env:SQLCL_EXE}".Trim()
-          $sqlplusExe = "${env:SQLPLUS_EXE}".Trim()
-          $env:TNS_ADMIN = "${env:TNS_ADMIN_DIR}".Trim()
-          Set-Location "${env:WORKSPACE}"
-
-          if (-not (Test-Path -LiteralPath $sqlplusExe)) {
-            throw "SQLPlus executable not found: $sqlplusExe"
-          }
-
-          $sysSql = @"
-whenever oserror exit failure
-whenever sqlerror continue
-connect / as sysdba
-begin
-  execute immediate 'alter pluggable database FREEPDB1 open';
-exception
-  when others then
-    if sqlcode != -65019 then
-      raise;
-    end if;
-end;
-/
-alter system register;
-alter session set container=FREEPDB1;
-alter system register;
-whenever sqlerror exit failure
-exit success
-"@
-          $sysScript = Join-Path $env:WORKSPACE "ensure-freepdb1-hrsit.sql"
-          Set-Content -LiteralPath $sysScript -Value $sysSql -Encoding Ascii
-          Write-Host "Preparing FREEPDB1 in SQLPlus before HR_SIT deploy..."
-          $sysOut = Join-Path $env:WORKSPACE 'ensure-freepdb1-hrsit.out'
-          $sysErr = Join-Path $env:WORKSPACE 'ensure-freepdb1-hrsit.err'
-          if (Test-Path $sysOut) { Remove-Item -LiteralPath $sysOut -Force }
-          if (Test-Path $sysErr) { Remove-Item -LiteralPath $sysErr -Force }
-          $sysProc = Start-Process -FilePath $sqlplusExe -ArgumentList @('-L','/nolog',"@$sysScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $sysOut -RedirectStandardError $sysErr
-          if (Test-Path $sysOut) { Get-Content -LiteralPath $sysOut | ForEach-Object { Write-Host $_ } }
-          if (Test-Path $sysErr) { Get-Content -LiteralPath $sysErr | ForEach-Object { Write-Host $_ } }
-          if ($sysProc.ExitCode -ne 0) { throw "SQLPlus pre-step failed for HR_SIT deploy" }
-
-          $sqlBlock = @"
-whenever oserror exit failure
-whenever sqlerror exit failure
-connect ${env:HRSIT_CONNECT}
-lb validate -changelog-file ${env:CHANGELOG_FILE}
-lb update-sql -changelog-file ${env:CHANGELOG_FILE}
-lb update -changelog-file ${env:CHANGELOG_FILE}
-exit success
-"@
-
-          $tmpScript = Join-Path $env:WORKSPACE "lb-hrsit.sql"
-          Set-Content -LiteralPath $tmpScript -Value $sqlBlock -Encoding Ascii
-
-          $noisePatterns = @(
-            'org.jline.utils.Log logr',
-            'Failed to save history',
-            'UserPrincipalNotFoundException',
-            'oracle.dbtools.raptor.console.impl.SqlclHistory',
-            'at oracle.dbtools.',
-            'at java.base/sun.nio.fs.Windows'
-          )
-
-          Write-Host "Running Liquibase for HR_SIT..."
-          $outFile = Join-Path $env:WORKSPACE 'lb-hrsit.out'
-          $errFile = Join-Path $env:WORKSPACE 'lb-hrsit.err'
-          if (Test-Path $outFile) { Remove-Item -LiteralPath $outFile -Force }
-          if (Test-Path $errFile) { Remove-Item -LiteralPath $errFile -Force }
-
-          $proc = Start-Process -FilePath $sqlExe -ArgumentList @('-S','-thin','-nohistory','/nolog',"@$tmpScript") -NoNewWindow -Wait -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
-          $exitCode = $proc.ExitCode
-
-          $lines = @()
-          if (Test-Path $outFile) { $lines += Get-Content -LiteralPath $outFile }
-          if (Test-Path $errFile) { $lines += Get-Content -LiteralPath $errFile }
-
-          foreach ($line in $lines) {
-            $txt = $line.ToString()
-            $isNoise = $false
-            foreach ($p in $noisePatterns) {
-              if ($txt -like "*$p*") { $isNoise = $true; break }
-            }
-            if (-not $isNoise) { Write-Host $txt }
-          }
-
-          if ($exitCode -ne 0) { throw "Liquibase failed on HR_SIT" }
+          if ($exitCode -ne 0) { throw "Liquibase failed on SIT2" }
         '''
       }
     }
   }
 }
+
