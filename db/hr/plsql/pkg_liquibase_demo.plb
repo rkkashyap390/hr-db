@@ -30,31 +30,6 @@ CREATE OR REPLACE PACKAGE BODY pkg_liquibase_demo AS
       RETURN -1;
   END get_order_count;
 
-  FUNCTION get_order_total_sum RETURN NUMBER IS
-    l_total NUMBER;
-  BEGIN
-    SELECT NVL(SUM(order_total), 0)
-      INTO l_total
-      FROM lb_demo_orders;
-    RETURN l_total;
-  EXCEPTION
-    WHEN OTHERS THEN
-      RETURN -1;
-  END get_order_total_sum;
-
-  FUNCTION get_order_status_count(p_status IN VARCHAR2) RETURN NUMBER IS
-    l_count NUMBER;
-  BEGIN
-    SELECT COUNT(*)
-      INTO l_count
-      FROM lb_demo_orders
-     WHERE UPPER(order_status) = UPPER(TRIM(p_status));
-    RETURN l_count;
-  EXCEPTION
-    WHEN OTHERS THEN
-      RETURN -1;
-  END get_order_status_count;
-
   FUNCTION get_employee_name(p_employee_id IN NUMBER) RETURN VARCHAR2 IS
     lc_name VARCHAR2(200);
   BEGIN
