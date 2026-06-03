@@ -5,6 +5,7 @@ CREATE OR REPLACE PACKAGE pkg_liquibase_demo AS
   FUNCTION get_order_total_sum RETURN NUMBER;
   FUNCTION get_order_status_count(p_status IN VARCHAR2) RETURN NUMBER;
   FUNCTION get_employee_name(p_employee_id IN NUMBER) RETURN VARCHAR2;
+  FUNCTION get_demo_message RETURN VARCHAR2;
   PROCEDURE write_test_log(p_message IN VARCHAR2);
 END pkg_liquibase_demo;
 /

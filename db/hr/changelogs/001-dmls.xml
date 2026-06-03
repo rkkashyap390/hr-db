@@ -8,4 +8,5 @@
   <include file="./dml/001-insert-lb-demo-orders.sql" relativeToChangelogFile="true"/>
   <include file="./dml/002-insert-lb-demo-orders.sql" relativeToChangelogFile="true"/>
   <include file="./dml/003-insert-lb-demo-orders.sql" relativeToChangelogFile="true"/>
+  <include file="./dml/004-insert-lb-demo-orders.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

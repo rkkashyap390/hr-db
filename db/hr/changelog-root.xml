@@ -7,6 +7,7 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
   <include file="changelogs/000-baseline.xml" relativeToChangelogFile="true"/>
+  <include file="changelogs/000-baseline-data-copy.xml" relativeToChangelogFile="true"/>
   <include file="changelogs/001-ddls.xml" relativeToChangelogFile="true"/>
   <include file="changelogs/001-packages.xml" relativeToChangelogFile="true"/>
   <include file="changelogs/001-dmls.xml" relativeToChangelogFile="true"/>

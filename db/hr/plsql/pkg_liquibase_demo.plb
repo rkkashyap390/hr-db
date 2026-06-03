@@ -69,6 +69,11 @@ CREATE OR REPLACE PACKAGE BODY pkg_liquibase_demo AS
       RETURN 'NOT_FOUND';
   END get_employee_name;
 
+  FUNCTION get_demo_message RETURN VARCHAR2 IS
+  BEGIN
+    RETURN 'PKG_LIQUIBASE_DEMO is deployed';
+  END get_demo_message;
+
   PROCEDURE write_test_log(p_message IN VARCHAR2) IS
   BEGIN
     DBMS_OUTPUT.PUT_LINE(

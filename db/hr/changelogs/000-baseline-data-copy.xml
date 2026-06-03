@@ -1,0 +1,2111 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="hr-db" id="baseline-data-disable-fks">
+        <sql>
+            ALTER TABLE COUNTRIES DISABLE CONSTRAINT COUNTR_REG_FK;
+            ALTER TABLE LOCATIONS DISABLE CONSTRAINT LOC_C_ID_FK;
+            ALTER TABLE DEPARTMENTS DISABLE CONSTRAINT DEPT_LOC_FK;
+            ALTER TABLE DEPARTMENTS DISABLE CONSTRAINT DEPT_MGR_FK;
+            ALTER TABLE EMPLOYEES DISABLE CONSTRAINT EMP_DEPT_FK;
+            ALTER TABLE EMPLOYEES DISABLE CONSTRAINT EMP_JOB_FK;
+            ALTER TABLE EMPLOYEES DISABLE CONSTRAINT EMP_MANAGER_FK;
+            ALTER TABLE JOB_HISTORY DISABLE CONSTRAINT JHIST_DEPT_FK;
+            ALTER TABLE JOB_HISTORY DISABLE CONSTRAINT JHIST_EMP_FK;
+            ALTER TABLE JOB_HISTORY DISABLE CONSTRAINT JHIST_JOB_FK;
+        </sql>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-1">
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="AR"/>
+            <column name="COUNTRY_NAME" value="Argentina"/>
+            <column name="REGION_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="AU"/>
+            <column name="COUNTRY_NAME" value="Australia"/>
+            <column name="REGION_ID" valueNumeric="40"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="BE"/>
+            <column name="COUNTRY_NAME" value="Belgium"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="BR"/>
+            <column name="COUNTRY_NAME" value="Brazil"/>
+            <column name="REGION_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="CA"/>
+            <column name="COUNTRY_NAME" value="Canada"/>
+            <column name="REGION_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="CH"/>
+            <column name="COUNTRY_NAME" value="Switzerland"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="CN"/>
+            <column name="COUNTRY_NAME" value="China"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="DE"/>
+            <column name="COUNTRY_NAME" value="Germany"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="DK"/>
+            <column name="COUNTRY_NAME" value="Denmark"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="EG"/>
+            <column name="COUNTRY_NAME" value="Egypt"/>
+            <column name="REGION_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="FR"/>
+            <column name="COUNTRY_NAME" value="France"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="GB"/>
+            <column name="COUNTRY_NAME" value="United Kingdom of Great Britain and Northern Ireland"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="IL"/>
+            <column name="COUNTRY_NAME" value="Israel"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="IN"/>
+            <column name="COUNTRY_NAME" value="India"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="IT"/>
+            <column name="COUNTRY_NAME" value="Italy"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="JP"/>
+            <column name="COUNTRY_NAME" value="Japan"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="KW"/>
+            <column name="COUNTRY_NAME" value="Kuwait"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="ML"/>
+            <column name="COUNTRY_NAME" value="Malaysia"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="MX"/>
+            <column name="COUNTRY_NAME" value="Mexico"/>
+            <column name="REGION_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="NG"/>
+            <column name="COUNTRY_NAME" value="Nigeria"/>
+            <column name="REGION_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="NL"/>
+            <column name="COUNTRY_NAME" value="Netherlands"/>
+            <column name="REGION_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="SG"/>
+            <column name="COUNTRY_NAME" value="Singapore"/>
+            <column name="REGION_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="US"/>
+            <column name="COUNTRY_NAME" value="United States of America"/>
+            <column name="REGION_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="ZM"/>
+            <column name="COUNTRY_NAME" value="Zambia"/>
+            <column name="REGION_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="COUNTRIES">
+            <column name="COUNTRY_ID" value="ZW"/>
+            <column name="COUNTRY_NAME" value="Zimbabwe"/>
+            <column name="REGION_ID" valueNumeric="50"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-2">
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="10"/>
+            <column name="DEPARTMENT_NAME" value="Administration"/>
+            <column name="MANAGER_ID" valueNumeric="200"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="20"/>
+            <column name="DEPARTMENT_NAME" value="Marketing"/>
+            <column name="MANAGER_ID" valueNumeric="201"/>
+            <column name="LOCATION_ID" valueNumeric="1800"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+            <column name="DEPARTMENT_NAME" value="Purchasing"/>
+            <column name="MANAGER_ID" valueNumeric="114"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="40"/>
+            <column name="DEPARTMENT_NAME" value="Human Resources"/>
+            <column name="MANAGER_ID" valueNumeric="203"/>
+            <column name="LOCATION_ID" valueNumeric="2400"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+            <column name="DEPARTMENT_NAME" value="Shipping"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="LOCATION_ID" valueNumeric="1500"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+            <column name="DEPARTMENT_NAME" value="IT"/>
+            <column name="MANAGER_ID" valueNumeric="103"/>
+            <column name="LOCATION_ID" valueNumeric="1400"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="70"/>
+            <column name="DEPARTMENT_NAME" value="Public Relations"/>
+            <column name="MANAGER_ID" valueNumeric="204"/>
+            <column name="LOCATION_ID" valueNumeric="2700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+            <column name="DEPARTMENT_NAME" value="Sales"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="LOCATION_ID" valueNumeric="2500"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="90"/>
+            <column name="DEPARTMENT_NAME" value="Executive"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_NAME" value="Finance"/>
+            <column name="MANAGER_ID" valueNumeric="108"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="110"/>
+            <column name="DEPARTMENT_NAME" value="Accounting"/>
+            <column name="MANAGER_ID" valueNumeric="205"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_NAME" value="Treasury"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="130"/>
+            <column name="DEPARTMENT_NAME" value="Corporate Tax"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="140"/>
+            <column name="DEPARTMENT_NAME" value="Control And Credit"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="150"/>
+            <column name="DEPARTMENT_NAME" value="Shareholder Services"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="160"/>
+            <column name="DEPARTMENT_NAME" value="Benefits"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="170"/>
+            <column name="DEPARTMENT_NAME" value="Manufacturing"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="180"/>
+            <column name="DEPARTMENT_NAME" value="Construction"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="190"/>
+            <column name="DEPARTMENT_NAME" value="Contracting"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="200"/>
+            <column name="DEPARTMENT_NAME" value="Operations"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="210"/>
+            <column name="DEPARTMENT_NAME" value="IT Support"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="220"/>
+            <column name="DEPARTMENT_NAME" value="NOC"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="230"/>
+            <column name="DEPARTMENT_NAME" value="IT Helpdesk"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="240"/>
+            <column name="DEPARTMENT_NAME" value="Government Sales"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="250"/>
+            <column name="DEPARTMENT_NAME" value="Retail Sales"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="260"/>
+            <column name="DEPARTMENT_NAME" value="Recruiting"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+        <insert tableName="DEPARTMENTS">
+            <column name="DEPARTMENT_ID" valueNumeric="270"/>
+            <column name="DEPARTMENT_NAME" value="Payroll"/>
+            <column name="MANAGER_ID"/>
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-3">
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="100"/>
+            <column name="FIRST_NAME" value="Steven"/>
+            <column name="LAST_NAME" value="King"/>
+            <column name="EMAIL" value="SKING"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0100"/>
+            <column name="HIRE_DATE" valueDate="2013-06-17T00:00:00"/>
+            <column name="JOB_ID" value="AD_PRES"/>
+            <column name="SALARY" valueNumeric="24000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID"/>
+            <column name="DEPARTMENT_ID" valueNumeric="90"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="101"/>
+            <column name="FIRST_NAME" value="Neena"/>
+            <column name="LAST_NAME" value="Yang"/>
+            <column name="EMAIL" value="NYANG"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0101"/>
+            <column name="HIRE_DATE" valueDate="2015-09-21T00:00:00"/>
+            <column name="JOB_ID" value="AD_VP"/>
+            <column name="SALARY" valueNumeric="17000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="90"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="102"/>
+            <column name="FIRST_NAME" value="Lex"/>
+            <column name="LAST_NAME" value="Garcia"/>
+            <column name="EMAIL" value="LGARCIA"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0102"/>
+            <column name="HIRE_DATE" valueDate="2011-01-13T00:00:00"/>
+            <column name="JOB_ID" value="AD_VP"/>
+            <column name="SALARY" valueNumeric="17000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="90"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="103"/>
+            <column name="FIRST_NAME" value="Alexander"/>
+            <column name="LAST_NAME" value="James"/>
+            <column name="EMAIL" value="AJAMES"/>
+            <column name="PHONE_NUMBER" value="1.590.555.0103"/>
+            <column name="HIRE_DATE" valueDate="2016-01-03T00:00:00"/>
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="SALARY" valueNumeric="9000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="102"/>
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="104"/>
+            <column name="FIRST_NAME" value="Bruce"/>
+            <column name="LAST_NAME" value="Miller"/>
+            <column name="EMAIL" value="BMILLER"/>
+            <column name="PHONE_NUMBER" value="1.590.555.0104"/>
+            <column name="HIRE_DATE" valueDate="2017-05-21T00:00:00"/>
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="SALARY" valueNumeric="6000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="103"/>
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="105"/>
+            <column name="FIRST_NAME" value="David"/>
+            <column name="LAST_NAME" value="Williams"/>
+            <column name="EMAIL" value="DWILLIAMS"/>
+            <column name="PHONE_NUMBER" value="1.590.555.0105"/>
+            <column name="HIRE_DATE" valueDate="2015-06-25T00:00:00"/>
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="SALARY" valueNumeric="4800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="103"/>
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="106"/>
+            <column name="FIRST_NAME" value="Valli"/>
+            <column name="LAST_NAME" value="Jackson"/>
+            <column name="EMAIL" value="VJACKSON"/>
+            <column name="PHONE_NUMBER" value="1.590.555.0106"/>
+            <column name="HIRE_DATE" valueDate="2016-02-05T00:00:00"/>
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="SALARY" valueNumeric="4800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="103"/>
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="107"/>
+            <column name="FIRST_NAME" value="Diana"/>
+            <column name="LAST_NAME" value="Nguyen"/>
+            <column name="EMAIL" value="DNGUYEN"/>
+            <column name="PHONE_NUMBER" value="1.590.555.0107"/>
+            <column name="HIRE_DATE" valueDate="2017-02-07T00:00:00"/>
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="SALARY" valueNumeric="4200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="103"/>
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="108"/>
+            <column name="FIRST_NAME" value="Nancy"/>
+            <column name="LAST_NAME" value="Gruenberg"/>
+            <column name="EMAIL" value="NGRUENBE"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0108"/>
+            <column name="HIRE_DATE" valueDate="2012-08-17T00:00:00"/>
+            <column name="JOB_ID" value="FI_MGR"/>
+            <column name="SALARY" valueNumeric="12008"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="101"/>
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="109"/>
+            <column name="FIRST_NAME" value="Daniel"/>
+            <column name="LAST_NAME" value="Faviet"/>
+            <column name="EMAIL" value="DFAVIET"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0109"/>
+            <column name="HIRE_DATE" valueDate="2012-08-16T00:00:00"/>
+            <column name="JOB_ID" value="FI_ACCOUNT"/>
+            <column name="SALARY" valueNumeric="9000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="108"/>
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="110"/>
+            <column name="FIRST_NAME" value="John"/>
+            <column name="LAST_NAME" value="Chen"/>
+            <column name="EMAIL" value="JCHEN"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0110"/>
+            <column name="HIRE_DATE" valueDate="2015-09-28T00:00:00"/>
+            <column name="JOB_ID" value="FI_ACCOUNT"/>
+            <column name="SALARY" valueNumeric="8200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="108"/>
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="111"/>
+            <column name="FIRST_NAME" value="Ismael"/>
+            <column name="LAST_NAME" value="Sciarra"/>
+            <column name="EMAIL" value="ISCIARRA"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0111"/>
+            <column name="HIRE_DATE" valueDate="2015-09-30T00:00:00"/>
+            <column name="JOB_ID" value="FI_ACCOUNT"/>
+            <column name="SALARY" valueNumeric="7700"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="108"/>
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="112"/>
+            <column name="FIRST_NAME" value="Jose Manuel"/>
+            <column name="LAST_NAME" value="Urman"/>
+            <column name="EMAIL" value="JMURMAN"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0112"/>
+            <column name="HIRE_DATE" valueDate="2016-03-07T00:00:00"/>
+            <column name="JOB_ID" value="FI_ACCOUNT"/>
+            <column name="SALARY" valueNumeric="7800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="108"/>
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="113"/>
+            <column name="FIRST_NAME" value="Luis"/>
+            <column name="LAST_NAME" value="Popp"/>
+            <column name="EMAIL" value="LPOPP"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0113"/>
+            <column name="HIRE_DATE" valueDate="2017-12-07T00:00:00"/>
+            <column name="JOB_ID" value="FI_ACCOUNT"/>
+            <column name="SALARY" valueNumeric="6900"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="108"/>
+            <column name="DEPARTMENT_ID" valueNumeric="100"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="114"/>
+            <column name="FIRST_NAME" value="Den"/>
+            <column name="LAST_NAME" value="Li"/>
+            <column name="EMAIL" value="DLI"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0114"/>
+            <column name="HIRE_DATE" valueDate="2012-12-07T00:00:00"/>
+            <column name="JOB_ID" value="PU_MAN"/>
+            <column name="SALARY" valueNumeric="11000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="115"/>
+            <column name="FIRST_NAME" value="Alexander"/>
+            <column name="LAST_NAME" value="Khoo"/>
+            <column name="EMAIL" value="AKHOO"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0115"/>
+            <column name="HIRE_DATE" valueDate="2013-05-18T00:00:00"/>
+            <column name="JOB_ID" value="PU_CLERK"/>
+            <column name="SALARY" valueNumeric="3100"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="114"/>
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="116"/>
+            <column name="FIRST_NAME" value="Shelli"/>
+            <column name="LAST_NAME" value="Baida"/>
+            <column name="EMAIL" value="SBAIDA"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0116"/>
+            <column name="HIRE_DATE" valueDate="2015-12-24T00:00:00"/>
+            <column name="JOB_ID" value="PU_CLERK"/>
+            <column name="SALARY" valueNumeric="2900"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="114"/>
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="117"/>
+            <column name="FIRST_NAME" value="Sigal"/>
+            <column name="LAST_NAME" value="Tobias"/>
+            <column name="EMAIL" value="STOBIAS"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0117"/>
+            <column name="HIRE_DATE" valueDate="2015-07-24T00:00:00"/>
+            <column name="JOB_ID" value="PU_CLERK"/>
+            <column name="SALARY" valueNumeric="2800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="114"/>
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="118"/>
+            <column name="FIRST_NAME" value="Guy"/>
+            <column name="LAST_NAME" value="Himuro"/>
+            <column name="EMAIL" value="GHIMURO"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0118"/>
+            <column name="HIRE_DATE" valueDate="2016-11-15T00:00:00"/>
+            <column name="JOB_ID" value="PU_CLERK"/>
+            <column name="SALARY" valueNumeric="2600"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="114"/>
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="119"/>
+            <column name="FIRST_NAME" value="Karen"/>
+            <column name="LAST_NAME" value="Colmenares"/>
+            <column name="EMAIL" value="KCOLMENA"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0119"/>
+            <column name="HIRE_DATE" valueDate="2017-08-10T00:00:00"/>
+            <column name="JOB_ID" value="PU_CLERK"/>
+            <column name="SALARY" valueNumeric="2500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="114"/>
+            <column name="DEPARTMENT_ID" valueNumeric="30"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="120"/>
+            <column name="FIRST_NAME" value="Matthew"/>
+            <column name="LAST_NAME" value="Weiss"/>
+            <column name="EMAIL" value="MWEISS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0120"/>
+            <column name="HIRE_DATE" valueDate="2014-07-18T00:00:00"/>
+            <column name="JOB_ID" value="ST_MAN"/>
+            <column name="SALARY" valueNumeric="8000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="121"/>
+            <column name="FIRST_NAME" value="Adam"/>
+            <column name="LAST_NAME" value="Fripp"/>
+            <column name="EMAIL" value="AFRIPP"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0121"/>
+            <column name="HIRE_DATE" valueDate="2015-04-10T00:00:00"/>
+            <column name="JOB_ID" value="ST_MAN"/>
+            <column name="SALARY" valueNumeric="8200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="122"/>
+            <column name="FIRST_NAME" value="Payam"/>
+            <column name="LAST_NAME" value="Kaufling"/>
+            <column name="EMAIL" value="PKAUFLIN"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0122"/>
+            <column name="HIRE_DATE" valueDate="2013-05-01T00:00:00"/>
+            <column name="JOB_ID" value="ST_MAN"/>
+            <column name="SALARY" valueNumeric="7900"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="123"/>
+            <column name="FIRST_NAME" value="Shanta"/>
+            <column name="LAST_NAME" value="Vollman"/>
+            <column name="EMAIL" value="SVOLLMAN"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0123"/>
+            <column name="HIRE_DATE" valueDate="2015-10-10T00:00:00"/>
+            <column name="JOB_ID" value="ST_MAN"/>
+            <column name="SALARY" valueNumeric="6500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="124"/>
+            <column name="FIRST_NAME" value="Kevin"/>
+            <column name="LAST_NAME" value="Mourgos"/>
+            <column name="EMAIL" value="KMOURGOS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0124"/>
+            <column name="HIRE_DATE" valueDate="2017-11-16T00:00:00"/>
+            <column name="JOB_ID" value="ST_MAN"/>
+            <column name="SALARY" valueNumeric="5800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="125"/>
+            <column name="FIRST_NAME" value="Julia"/>
+            <column name="LAST_NAME" value="Nayer"/>
+            <column name="EMAIL" value="JNAYER"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0125"/>
+            <column name="HIRE_DATE" valueDate="2015-07-16T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="126"/>
+            <column name="FIRST_NAME" value="Irene"/>
+            <column name="LAST_NAME" value="Mikkilineni"/>
+            <column name="EMAIL" value="IMIKKILI"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0126"/>
+            <column name="HIRE_DATE" valueDate="2016-09-28T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2700"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="127"/>
+            <column name="FIRST_NAME" value="James"/>
+            <column name="LAST_NAME" value="Landry"/>
+            <column name="EMAIL" value="JLANDRY"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0127"/>
+            <column name="HIRE_DATE" valueDate="2017-01-14T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2400"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="128"/>
+            <column name="FIRST_NAME" value="Steven"/>
+            <column name="LAST_NAME" value="Markle"/>
+            <column name="EMAIL" value="SMARKLE"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0128"/>
+            <column name="HIRE_DATE" valueDate="2018-03-08T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="129"/>
+            <column name="FIRST_NAME" value="Laura"/>
+            <column name="LAST_NAME" value="Bissot"/>
+            <column name="EMAIL" value="LBISSOT"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0129"/>
+            <column name="HIRE_DATE" valueDate="2015-08-20T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3300"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="130"/>
+            <column name="FIRST_NAME" value="Mozhe"/>
+            <column name="LAST_NAME" value="Atkinson"/>
+            <column name="EMAIL" value="MATKINSO"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0130"/>
+            <column name="HIRE_DATE" valueDate="2015-10-30T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="131"/>
+            <column name="FIRST_NAME" value="James"/>
+            <column name="LAST_NAME" value="Marlow"/>
+            <column name="EMAIL" value="JAMRLOW"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0131"/>
+            <column name="HIRE_DATE" valueDate="2015-02-16T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="132"/>
+            <column name="FIRST_NAME" value="TJ"/>
+            <column name="LAST_NAME" value="Olson"/>
+            <column name="EMAIL" value="TJOLSON"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0132"/>
+            <column name="HIRE_DATE" valueDate="2017-04-10T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2100"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="133"/>
+            <column name="FIRST_NAME" value="Jason"/>
+            <column name="LAST_NAME" value="Mallin"/>
+            <column name="EMAIL" value="JMALLIN"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0133"/>
+            <column name="HIRE_DATE" valueDate="2014-06-14T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3300"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="134"/>
+            <column name="FIRST_NAME" value="Michael"/>
+            <column name="LAST_NAME" value="Rogers"/>
+            <column name="EMAIL" value="MROGERS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0134"/>
+            <column name="HIRE_DATE" valueDate="2016-08-26T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2900"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="135"/>
+            <column name="FIRST_NAME" value="Ki"/>
+            <column name="LAST_NAME" value="Gee"/>
+            <column name="EMAIL" value="KGEE"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0135"/>
+            <column name="HIRE_DATE" valueDate="2017-12-12T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2400"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="136"/>
+            <column name="FIRST_NAME" value="Hazel"/>
+            <column name="LAST_NAME" value="Philtanker"/>
+            <column name="EMAIL" value="HPHILTAN"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0136"/>
+            <column name="HIRE_DATE" valueDate="2018-02-06T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="137"/>
+            <column name="FIRST_NAME" value="Renske"/>
+            <column name="LAST_NAME" value="Ladwig"/>
+            <column name="EMAIL" value="RLADWIG"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0137"/>
+            <column name="HIRE_DATE" valueDate="2013-07-14T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3600"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="138"/>
+            <column name="FIRST_NAME" value="Stephen"/>
+            <column name="LAST_NAME" value="Stiles"/>
+            <column name="EMAIL" value="SSTILES"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0138"/>
+            <column name="HIRE_DATE" valueDate="2015-10-26T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="139"/>
+            <column name="FIRST_NAME" value="John"/>
+            <column name="LAST_NAME" value="Seo"/>
+            <column name="EMAIL" value="JSEO"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0139"/>
+            <column name="HIRE_DATE" valueDate="2016-02-12T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2700"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="140"/>
+            <column name="FIRST_NAME" value="Joshua"/>
+            <column name="LAST_NAME" value="Patel"/>
+            <column name="EMAIL" value="JPATEL"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0140"/>
+            <column name="HIRE_DATE" valueDate="2016-04-06T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="141"/>
+            <column name="FIRST_NAME" value="Trenna"/>
+            <column name="LAST_NAME" value="Rajs"/>
+            <column name="EMAIL" value="TRAJS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0141"/>
+            <column name="HIRE_DATE" valueDate="2013-10-17T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="142"/>
+            <column name="FIRST_NAME" value="Curtis"/>
+            <column name="LAST_NAME" value="Davies"/>
+            <column name="EMAIL" value="CDAVIES"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0142"/>
+            <column name="HIRE_DATE" valueDate="2015-01-29T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="3100"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="143"/>
+            <column name="FIRST_NAME" value="Randall"/>
+            <column name="LAST_NAME" value="Matos"/>
+            <column name="EMAIL" value="RMATOS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0143"/>
+            <column name="HIRE_DATE" valueDate="2016-03-15T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2600"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="144"/>
+            <column name="FIRST_NAME" value="Peter"/>
+            <column name="LAST_NAME" value="Vargas"/>
+            <column name="EMAIL" value="PVARGAS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0144"/>
+            <column name="HIRE_DATE" valueDate="2016-07-09T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="SALARY" valueNumeric="2500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="145"/>
+            <column name="FIRST_NAME" value="John"/>
+            <column name="LAST_NAME" value="Singh"/>
+            <column name="EMAIL" value="JSINGH"/>
+            <column name="PHONE_NUMBER" value="44.1632.960000"/>
+            <column name="HIRE_DATE" valueDate="2014-10-01T00:00:00"/>
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="SALARY" valueNumeric="14000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.4"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="146"/>
+            <column name="FIRST_NAME" value="Karen"/>
+            <column name="LAST_NAME" value="Partners"/>
+            <column name="EMAIL" value="KPARTNER"/>
+            <column name="PHONE_NUMBER" value="44.1632.960001"/>
+            <column name="HIRE_DATE" valueDate="2015-01-05T00:00:00"/>
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="SALARY" valueNumeric="13500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="147"/>
+            <column name="FIRST_NAME" value="Alberto"/>
+            <column name="LAST_NAME" value="Errazuriz"/>
+            <column name="EMAIL" value="AERRAZUR"/>
+            <column name="PHONE_NUMBER" value="44.1632.960002"/>
+            <column name="HIRE_DATE" valueDate="2015-03-10T00:00:00"/>
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="SALARY" valueNumeric="12000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="148"/>
+            <column name="FIRST_NAME" value="Gerald"/>
+            <column name="LAST_NAME" value="Cambrault"/>
+            <column name="EMAIL" value="GCAMBRAU"/>
+            <column name="PHONE_NUMBER" value="44.1632.960003"/>
+            <column name="HIRE_DATE" valueDate="2017-10-15T00:00:00"/>
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="SALARY" valueNumeric="11000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="149"/>
+            <column name="FIRST_NAME" value="Eleni"/>
+            <column name="LAST_NAME" value="Zlotkey"/>
+            <column name="EMAIL" value="EZLOTKEY"/>
+            <column name="PHONE_NUMBER" value="44.1632.960004"/>
+            <column name="HIRE_DATE" valueDate="2018-01-29T00:00:00"/>
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="SALARY" valueNumeric="10500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="150"/>
+            <column name="FIRST_NAME" value="Sean"/>
+            <column name="LAST_NAME" value="Tucker"/>
+            <column name="EMAIL" value="STUCKER"/>
+            <column name="PHONE_NUMBER" value="44.1632.960005"/>
+            <column name="HIRE_DATE" valueDate="2015-01-30T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="10000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="151"/>
+            <column name="FIRST_NAME" value="David"/>
+            <column name="LAST_NAME" value="Bernstein"/>
+            <column name="EMAIL" value="DBERNSTE"/>
+            <column name="PHONE_NUMBER" value="44.1632.960006"/>
+            <column name="HIRE_DATE" valueDate="2015-03-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="9500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.25"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="152"/>
+            <column name="FIRST_NAME" value="Peter"/>
+            <column name="LAST_NAME" value="Hall"/>
+            <column name="EMAIL" value="PHALL"/>
+            <column name="PHONE_NUMBER" value="44.1632.960007"/>
+            <column name="HIRE_DATE" valueDate="2015-08-20T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="9000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.25"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="153"/>
+            <column name="FIRST_NAME" value="Christopher"/>
+            <column name="LAST_NAME" value="Olsen"/>
+            <column name="EMAIL" value="COLSEN"/>
+            <column name="PHONE_NUMBER" value="44.1632.960008"/>
+            <column name="HIRE_DATE" valueDate="2016-03-30T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="8000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="154"/>
+            <column name="FIRST_NAME" value="Nanette"/>
+            <column name="LAST_NAME" value="Cambrault"/>
+            <column name="EMAIL" value="NCAMBRAU"/>
+            <column name="PHONE_NUMBER" value="44.1632.960009"/>
+            <column name="HIRE_DATE" valueDate="2016-12-09T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="155"/>
+            <column name="FIRST_NAME" value="Oliver"/>
+            <column name="LAST_NAME" value="Tuvault"/>
+            <column name="EMAIL" value="OTUVAULT"/>
+            <column name="PHONE_NUMBER" value="44.1632.960010"/>
+            <column name="HIRE_DATE" valueDate="2017-11-23T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.15"/>
+            <column name="MANAGER_ID" valueNumeric="145"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="156"/>
+            <column name="FIRST_NAME" value="Janette"/>
+            <column name="LAST_NAME" value="King"/>
+            <column name="EMAIL" value="JKING"/>
+            <column name="PHONE_NUMBER" value="44.1632.960011"/>
+            <column name="HIRE_DATE" valueDate="2014-01-30T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="10000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.35"/>
+            <column name="MANAGER_ID" valueNumeric="146"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="157"/>
+            <column name="FIRST_NAME" value="Patrick"/>
+            <column name="LAST_NAME" value="Sully"/>
+            <column name="EMAIL" value="PSULLY"/>
+            <column name="PHONE_NUMBER" value="44.1632.960012"/>
+            <column name="HIRE_DATE" valueDate="2014-03-04T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="9500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.35"/>
+            <column name="MANAGER_ID" valueNumeric="146"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="158"/>
+            <column name="FIRST_NAME" value="Allan"/>
+            <column name="LAST_NAME" value="McEwen"/>
+            <column name="EMAIL" value="AMCEWEN"/>
+            <column name="PHONE_NUMBER" value="44.1632.960013"/>
+            <column name="HIRE_DATE" valueDate="2014-08-01T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="9000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.35"/>
+            <column name="MANAGER_ID" valueNumeric="146"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="159"/>
+            <column name="FIRST_NAME" value="Lindsey"/>
+            <column name="LAST_NAME" value="Smith"/>
+            <column name="EMAIL" value="LSMITH"/>
+            <column name="PHONE_NUMBER" value="44.1632.960014"/>
+            <column name="HIRE_DATE" valueDate="2015-03-10T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="8000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="146"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="160"/>
+            <column name="FIRST_NAME" value="Louise"/>
+            <column name="LAST_NAME" value="Doran"/>
+            <column name="EMAIL" value="LDORAN"/>
+            <column name="PHONE_NUMBER" value="44.1632.960015"/>
+            <column name="HIRE_DATE" valueDate="2015-12-15T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="146"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="161"/>
+            <column name="FIRST_NAME" value="Sarath"/>
+            <column name="LAST_NAME" value="Sewall"/>
+            <column name="EMAIL" value="SSEWALL"/>
+            <column name="PHONE_NUMBER" value="44.1632.960016"/>
+            <column name="HIRE_DATE" valueDate="2016-11-03T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.25"/>
+            <column name="MANAGER_ID" valueNumeric="146"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="162"/>
+            <column name="FIRST_NAME" value="Clara"/>
+            <column name="LAST_NAME" value="Vishney"/>
+            <column name="EMAIL" value="CVISHNEY"/>
+            <column name="PHONE_NUMBER" value="44.1632.960017"/>
+            <column name="HIRE_DATE" valueDate="2015-11-11T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="10500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.25"/>
+            <column name="MANAGER_ID" valueNumeric="147"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="163"/>
+            <column name="FIRST_NAME" value="Danielle"/>
+            <column name="LAST_NAME" value="Greene"/>
+            <column name="EMAIL" value="DGREENE"/>
+            <column name="PHONE_NUMBER" value="44.1632.960018"/>
+            <column name="HIRE_DATE" valueDate="2017-03-19T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="9500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.15"/>
+            <column name="MANAGER_ID" valueNumeric="147"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="164"/>
+            <column name="FIRST_NAME" value="Mattea"/>
+            <column name="LAST_NAME" value="Marvins"/>
+            <column name="EMAIL" value="MMARVINS"/>
+            <column name="PHONE_NUMBER" value="44.1632.960019"/>
+            <column name="HIRE_DATE" valueDate="2018-01-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7200"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.1"/>
+            <column name="MANAGER_ID" valueNumeric="147"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="165"/>
+            <column name="FIRST_NAME" value="David"/>
+            <column name="LAST_NAME" value="Lee"/>
+            <column name="EMAIL" value="DLEE"/>
+            <column name="PHONE_NUMBER" value="44.1632.960020"/>
+            <column name="HIRE_DATE" valueDate="2018-02-23T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="6800"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.1"/>
+            <column name="MANAGER_ID" valueNumeric="147"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="166"/>
+            <column name="FIRST_NAME" value="Sundar"/>
+            <column name="LAST_NAME" value="Ande"/>
+            <column name="EMAIL" value="SANDE"/>
+            <column name="PHONE_NUMBER" value="44.1632.960021"/>
+            <column name="HIRE_DATE" valueDate="2018-03-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="6400"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.1"/>
+            <column name="MANAGER_ID" valueNumeric="147"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="167"/>
+            <column name="FIRST_NAME" value="Amit"/>
+            <column name="LAST_NAME" value="Banda"/>
+            <column name="EMAIL" value="ABANDA"/>
+            <column name="PHONE_NUMBER" value="44.1632.960022"/>
+            <column name="HIRE_DATE" valueDate="2018-04-21T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="6200"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.1"/>
+            <column name="MANAGER_ID" valueNumeric="147"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="168"/>
+            <column name="FIRST_NAME" value="Lisa"/>
+            <column name="LAST_NAME" value="Ozer"/>
+            <column name="EMAIL" value="LOZER"/>
+            <column name="PHONE_NUMBER" value="44.1632.960023"/>
+            <column name="HIRE_DATE" valueDate="2015-03-11T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="11500"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.25"/>
+            <column name="MANAGER_ID" valueNumeric="148"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="169"/>
+            <column name="FIRST_NAME" value="Harrison"/>
+            <column name="LAST_NAME" value="Bloom"/>
+            <column name="EMAIL" value="HBLOOM"/>
+            <column name="PHONE_NUMBER" value="44.1632.960024"/>
+            <column name="HIRE_DATE" valueDate="2016-03-23T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="10000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="148"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="170"/>
+            <column name="FIRST_NAME" value="Tayler"/>
+            <column name="LAST_NAME" value="Fox"/>
+            <column name="EMAIL" value="TFOX"/>
+            <column name="PHONE_NUMBER" value="44.1632.960025"/>
+            <column name="HIRE_DATE" valueDate="2016-01-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="9600"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="148"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="171"/>
+            <column name="FIRST_NAME" value="William"/>
+            <column name="LAST_NAME" value="Smith"/>
+            <column name="EMAIL" value="WSMITH"/>
+            <column name="PHONE_NUMBER" value="44.1632.960026"/>
+            <column name="HIRE_DATE" valueDate="2017-02-23T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7400"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.15"/>
+            <column name="MANAGER_ID" valueNumeric="148"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="172"/>
+            <column name="FIRST_NAME" value="Elizabeth"/>
+            <column name="LAST_NAME" value="Bates"/>
+            <column name="EMAIL" value="EBATES"/>
+            <column name="PHONE_NUMBER" value="44.1632.960027"/>
+            <column name="HIRE_DATE" valueDate="2017-03-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7300"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.15"/>
+            <column name="MANAGER_ID" valueNumeric="148"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="173"/>
+            <column name="FIRST_NAME" value="Sundita"/>
+            <column name="LAST_NAME" value="Kumar"/>
+            <column name="EMAIL" value="SKUMAR"/>
+            <column name="PHONE_NUMBER" value="44.1632.960028"/>
+            <column name="HIRE_DATE" valueDate="2018-04-21T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="6100"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.1"/>
+            <column name="MANAGER_ID" valueNumeric="148"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="174"/>
+            <column name="FIRST_NAME" value="Ellen"/>
+            <column name="LAST_NAME" value="Abel"/>
+            <column name="EMAIL" value="EABEL"/>
+            <column name="PHONE_NUMBER" value="44.1632.960029"/>
+            <column name="HIRE_DATE" valueDate="2014-05-11T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="11000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.3"/>
+            <column name="MANAGER_ID" valueNumeric="149"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="175"/>
+            <column name="FIRST_NAME" value="Alyssa"/>
+            <column name="LAST_NAME" value="Hutton"/>
+            <column name="EMAIL" value="AHUTTON"/>
+            <column name="PHONE_NUMBER" value="44.1632.960030"/>
+            <column name="HIRE_DATE" valueDate="2015-03-19T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="8800"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.25"/>
+            <column name="MANAGER_ID" valueNumeric="149"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="176"/>
+            <column name="FIRST_NAME" value="Jonathon"/>
+            <column name="LAST_NAME" value="Taylor"/>
+            <column name="EMAIL" value="JTAYLOR"/>
+            <column name="PHONE_NUMBER" value="44.1632.960031"/>
+            <column name="HIRE_DATE" valueDate="2016-03-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="8600"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="149"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="177"/>
+            <column name="FIRST_NAME" value="Jack"/>
+            <column name="LAST_NAME" value="Livingston"/>
+            <column name="EMAIL" value="JLIVINGS"/>
+            <column name="PHONE_NUMBER" value="44.1632.960032"/>
+            <column name="HIRE_DATE" valueDate="2016-04-23T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="8400"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.2"/>
+            <column name="MANAGER_ID" valueNumeric="149"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="178"/>
+            <column name="FIRST_NAME" value="Kimberely"/>
+            <column name="LAST_NAME" value="Grant"/>
+            <column name="EMAIL" value="KGRANT"/>
+            <column name="PHONE_NUMBER" value="44.1632.960033"/>
+            <column name="HIRE_DATE" valueDate="2017-05-24T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="7000"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.15"/>
+            <column name="MANAGER_ID" valueNumeric="149"/>
+            <column name="DEPARTMENT_ID"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="179"/>
+            <column name="FIRST_NAME" value="Charles"/>
+            <column name="LAST_NAME" value="Johnson"/>
+            <column name="EMAIL" value="CJOHNSON"/>
+            <column name="PHONE_NUMBER" value="44.1632.960034"/>
+            <column name="HIRE_DATE" valueDate="2018-01-04T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="SALARY" valueNumeric="6200"/>
+            <column name="COMMISSION_PCT" valueNumeric="0.1"/>
+            <column name="MANAGER_ID" valueNumeric="149"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="180"/>
+            <column name="FIRST_NAME" value="Winston"/>
+            <column name="LAST_NAME" value="Taylor"/>
+            <column name="EMAIL" value="WTAYLOR"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0145"/>
+            <column name="HIRE_DATE" valueDate="2016-01-24T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="181"/>
+            <column name="FIRST_NAME" value="Jean"/>
+            <column name="LAST_NAME" value="Fleaur"/>
+            <column name="EMAIL" value="JFLEAUR"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0146"/>
+            <column name="HIRE_DATE" valueDate="2016-02-23T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3100"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="182"/>
+            <column name="FIRST_NAME" value="Martha"/>
+            <column name="LAST_NAME" value="Sullivan"/>
+            <column name="EMAIL" value="MSULLIVA"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0147"/>
+            <column name="HIRE_DATE" valueDate="2017-06-21T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="183"/>
+            <column name="FIRST_NAME" value="Girard"/>
+            <column name="LAST_NAME" value="Geoni"/>
+            <column name="EMAIL" value="GGEONI"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0148"/>
+            <column name="HIRE_DATE" valueDate="2018-02-03T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="120"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="184"/>
+            <column name="FIRST_NAME" value="Nandita"/>
+            <column name="LAST_NAME" value="Sarchand"/>
+            <column name="EMAIL" value="NSARCHAN"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0149"/>
+            <column name="HIRE_DATE" valueDate="2014-01-27T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="4200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="185"/>
+            <column name="FIRST_NAME" value="Alexis"/>
+            <column name="LAST_NAME" value="Bull"/>
+            <column name="EMAIL" value="ABULL"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0150"/>
+            <column name="HIRE_DATE" valueDate="2015-02-20T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="4100"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="186"/>
+            <column name="FIRST_NAME" value="Julia"/>
+            <column name="LAST_NAME" value="Dellinger"/>
+            <column name="EMAIL" value="JDELLING"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0151"/>
+            <column name="HIRE_DATE" valueDate="2016-06-24T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3400"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="187"/>
+            <column name="FIRST_NAME" value="Anthony"/>
+            <column name="LAST_NAME" value="Cabrio"/>
+            <column name="EMAIL" value="ACABRIO"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0152"/>
+            <column name="HIRE_DATE" valueDate="2017-02-07T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="121"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="188"/>
+            <column name="FIRST_NAME" value="Kelly"/>
+            <column name="LAST_NAME" value="Chung"/>
+            <column name="EMAIL" value="KCHUNG"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0153"/>
+            <column name="HIRE_DATE" valueDate="2015-06-14T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="189"/>
+            <column name="FIRST_NAME" value="Jennifer"/>
+            <column name="LAST_NAME" value="Dilly"/>
+            <column name="EMAIL" value="JDILLY"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0154"/>
+            <column name="HIRE_DATE" valueDate="2015-08-13T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3600"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="190"/>
+            <column name="FIRST_NAME" value="Timothy"/>
+            <column name="LAST_NAME" value="Venzl"/>
+            <column name="EMAIL" value="TVENZL"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0155"/>
+            <column name="HIRE_DATE" valueDate="2016-07-11T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2900"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="191"/>
+            <column name="FIRST_NAME" value="Randall"/>
+            <column name="LAST_NAME" value="Perkins"/>
+            <column name="EMAIL" value="RPERKINS"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0156"/>
+            <column name="HIRE_DATE" valueDate="2017-12-19T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="122"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="192"/>
+            <column name="FIRST_NAME" value="Sarah"/>
+            <column name="LAST_NAME" value="Bell"/>
+            <column name="EMAIL" value="SBELL"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0157"/>
+            <column name="HIRE_DATE" valueDate="2014-02-04T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="4000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="193"/>
+            <column name="FIRST_NAME" value="Britney"/>
+            <column name="LAST_NAME" value="Everett"/>
+            <column name="EMAIL" value="BEVERETT"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0158"/>
+            <column name="HIRE_DATE" valueDate="2015-03-03T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3900"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="194"/>
+            <column name="FIRST_NAME" value="Samuel"/>
+            <column name="LAST_NAME" value="McLeod"/>
+            <column name="EMAIL" value="SMCLEOD"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0159"/>
+            <column name="HIRE_DATE" valueDate="2016-07-01T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3200"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="195"/>
+            <column name="FIRST_NAME" value="Vance"/>
+            <column name="LAST_NAME" value="Jones"/>
+            <column name="EMAIL" value="VJONES"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0160"/>
+            <column name="HIRE_DATE" valueDate="2017-03-17T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2800"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="123"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="196"/>
+            <column name="FIRST_NAME" value="Alana"/>
+            <column name="LAST_NAME" value="Walsh"/>
+            <column name="EMAIL" value="AWALSH"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0161"/>
+            <column name="HIRE_DATE" valueDate="2016-04-24T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3100"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="197"/>
+            <column name="FIRST_NAME" value="Kevin"/>
+            <column name="LAST_NAME" value="Feeney"/>
+            <column name="EMAIL" value="KFEENEY"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0162"/>
+            <column name="HIRE_DATE" valueDate="2016-05-23T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="3000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="198"/>
+            <column name="FIRST_NAME" value="Donald"/>
+            <column name="LAST_NAME" value="OConnell"/>
+            <column name="EMAIL" value="DOCONNEL"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0163"/>
+            <column name="HIRE_DATE" valueDate="2017-06-21T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2600"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="199"/>
+            <column name="FIRST_NAME" value="Douglas"/>
+            <column name="LAST_NAME" value="Grant"/>
+            <column name="EMAIL" value="DGRANT"/>
+            <column name="PHONE_NUMBER" value="1.650.555.0164"/>
+            <column name="HIRE_DATE" valueDate="2018-01-13T00:00:00"/>
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="SALARY" valueNumeric="2600"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="124"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="200"/>
+            <column name="FIRST_NAME" value="Jennifer"/>
+            <column name="LAST_NAME" value="Whalen"/>
+            <column name="EMAIL" value="JWHALEN"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0165"/>
+            <column name="HIRE_DATE" valueDate="2013-09-17T00:00:00"/>
+            <column name="JOB_ID" value="AD_ASST"/>
+            <column name="SALARY" valueNumeric="4400"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="101"/>
+            <column name="DEPARTMENT_ID" valueNumeric="10"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="201"/>
+            <column name="FIRST_NAME" value="Michael"/>
+            <column name="LAST_NAME" value="Martinez"/>
+            <column name="EMAIL" value="MMARTINE"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0166"/>
+            <column name="HIRE_DATE" valueDate="2014-02-17T00:00:00"/>
+            <column name="JOB_ID" value="MK_MAN"/>
+            <column name="SALARY" valueNumeric="13000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="100"/>
+            <column name="DEPARTMENT_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="202"/>
+            <column name="FIRST_NAME" value="Pat"/>
+            <column name="LAST_NAME" value="Davis"/>
+            <column name="EMAIL" value="PDAVIS"/>
+            <column name="PHONE_NUMBER" value="1.603.555.0167"/>
+            <column name="HIRE_DATE" valueDate="2015-08-17T00:00:00"/>
+            <column name="JOB_ID" value="MK_REP"/>
+            <column name="SALARY" valueNumeric="6000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="201"/>
+            <column name="DEPARTMENT_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="203"/>
+            <column name="FIRST_NAME" value="Susan"/>
+            <column name="LAST_NAME" value="Jacobs"/>
+            <column name="EMAIL" value="SJACOBS"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0168"/>
+            <column name="HIRE_DATE" valueDate="2012-06-07T00:00:00"/>
+            <column name="JOB_ID" value="HR_REP"/>
+            <column name="SALARY" valueNumeric="6500"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="101"/>
+            <column name="DEPARTMENT_ID" valueNumeric="40"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="204"/>
+            <column name="FIRST_NAME" value="Hermann"/>
+            <column name="LAST_NAME" value="Brown"/>
+            <column name="EMAIL" value="HBROWN"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0169"/>
+            <column name="HIRE_DATE" valueDate="2012-06-07T00:00:00"/>
+            <column name="JOB_ID" value="PR_REP"/>
+            <column name="SALARY" valueNumeric="10000"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="101"/>
+            <column name="DEPARTMENT_ID" valueNumeric="70"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="205"/>
+            <column name="FIRST_NAME" value="Shelley"/>
+            <column name="LAST_NAME" value="Higgins"/>
+            <column name="EMAIL" value="SHIGGINS"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0170"/>
+            <column name="HIRE_DATE" valueDate="2012-06-07T00:00:00"/>
+            <column name="JOB_ID" value="AC_MGR"/>
+            <column name="SALARY" valueNumeric="12008"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="101"/>
+            <column name="DEPARTMENT_ID" valueNumeric="110"/>
+        </insert>
+        <insert tableName="EMPLOYEES">
+            <column name="EMPLOYEE_ID" valueNumeric="206"/>
+            <column name="FIRST_NAME" value="William"/>
+            <column name="LAST_NAME" value="Gietz"/>
+            <column name="EMAIL" value="WGIETZ"/>
+            <column name="PHONE_NUMBER" value="1.515.555.0171"/>
+            <column name="HIRE_DATE" valueDate="2012-06-07T00:00:00"/>
+            <column name="JOB_ID" value="AC_ACCOUNT"/>
+            <column name="SALARY" valueNumeric="8300"/>
+            <column name="COMMISSION_PCT"/>
+            <column name="MANAGER_ID" valueNumeric="205"/>
+            <column name="DEPARTMENT_ID" valueNumeric="110"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-4">
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="AD_PRES"/>
+            <column name="JOB_TITLE" value="President"/>
+            <column name="MIN_SALARY" valueNumeric="20080"/>
+            <column name="MAX_SALARY" valueNumeric="40000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="AD_VP"/>
+            <column name="JOB_TITLE" value="Administration Vice President"/>
+            <column name="MIN_SALARY" valueNumeric="15000"/>
+            <column name="MAX_SALARY" valueNumeric="30000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="AD_ASST"/>
+            <column name="JOB_TITLE" value="Administration Assistant"/>
+            <column name="MIN_SALARY" valueNumeric="3000"/>
+            <column name="MAX_SALARY" valueNumeric="6000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="FI_MGR"/>
+            <column name="JOB_TITLE" value="Finance Manager"/>
+            <column name="MIN_SALARY" valueNumeric="8200"/>
+            <column name="MAX_SALARY" valueNumeric="16000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="FI_ACCOUNT"/>
+            <column name="JOB_TITLE" value="Accountant"/>
+            <column name="MIN_SALARY" valueNumeric="4200"/>
+            <column name="MAX_SALARY" valueNumeric="9000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="AC_MGR"/>
+            <column name="JOB_TITLE" value="Accounting Manager"/>
+            <column name="MIN_SALARY" valueNumeric="8200"/>
+            <column name="MAX_SALARY" valueNumeric="16000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="AC_ACCOUNT"/>
+            <column name="JOB_TITLE" value="Public Accountant"/>
+            <column name="MIN_SALARY" valueNumeric="4200"/>
+            <column name="MAX_SALARY" valueNumeric="9000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="JOB_TITLE" value="Sales Manager"/>
+            <column name="MIN_SALARY" valueNumeric="10000"/>
+            <column name="MAX_SALARY" valueNumeric="20080"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="JOB_TITLE" value="Sales Representative"/>
+            <column name="MIN_SALARY" valueNumeric="6000"/>
+            <column name="MAX_SALARY" valueNumeric="12008"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="PU_MAN"/>
+            <column name="JOB_TITLE" value="Purchasing Manager"/>
+            <column name="MIN_SALARY" valueNumeric="8000"/>
+            <column name="MAX_SALARY" valueNumeric="15000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="PU_CLERK"/>
+            <column name="JOB_TITLE" value="Purchasing Clerk"/>
+            <column name="MIN_SALARY" valueNumeric="2500"/>
+            <column name="MAX_SALARY" valueNumeric="5500"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="ST_MAN"/>
+            <column name="JOB_TITLE" value="Stock Manager"/>
+            <column name="MIN_SALARY" valueNumeric="5500"/>
+            <column name="MAX_SALARY" valueNumeric="8500"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="JOB_TITLE" value="Stock Clerk"/>
+            <column name="MIN_SALARY" valueNumeric="2008"/>
+            <column name="MAX_SALARY" valueNumeric="5000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="SH_CLERK"/>
+            <column name="JOB_TITLE" value="Shipping Clerk"/>
+            <column name="MIN_SALARY" valueNumeric="2500"/>
+            <column name="MAX_SALARY" valueNumeric="5500"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="JOB_TITLE" value="Programmer"/>
+            <column name="MIN_SALARY" valueNumeric="4000"/>
+            <column name="MAX_SALARY" valueNumeric="10000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="MK_MAN"/>
+            <column name="JOB_TITLE" value="Marketing Manager"/>
+            <column name="MIN_SALARY" valueNumeric="9000"/>
+            <column name="MAX_SALARY" valueNumeric="15000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="MK_REP"/>
+            <column name="JOB_TITLE" value="Marketing Representative"/>
+            <column name="MIN_SALARY" valueNumeric="4000"/>
+            <column name="MAX_SALARY" valueNumeric="9000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="HR_REP"/>
+            <column name="JOB_TITLE" value="Human Resources Representative"/>
+            <column name="MIN_SALARY" valueNumeric="4000"/>
+            <column name="MAX_SALARY" valueNumeric="9000"/>
+        </insert>
+        <insert tableName="JOBS">
+            <column name="JOB_ID" value="PR_REP"/>
+            <column name="JOB_TITLE" value="Public Relations Representative"/>
+            <column name="MIN_SALARY" valueNumeric="4500"/>
+            <column name="MAX_SALARY" valueNumeric="10500"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-5">
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="102"/>
+            <column name="START_DATE" valueDate="2011-01-13T00:00:00"/>
+            <column name="END_DATE" valueDate="2016-07-24T00:00:00"/>
+            <column name="JOB_ID" value="IT_PROG"/>
+            <column name="DEPARTMENT_ID" valueNumeric="60"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="101"/>
+            <column name="START_DATE" valueDate="2007-09-21T00:00:00"/>
+            <column name="END_DATE" valueDate="2011-10-27T00:00:00"/>
+            <column name="JOB_ID" value="AC_ACCOUNT"/>
+            <column name="DEPARTMENT_ID" valueNumeric="110"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="101"/>
+            <column name="START_DATE" valueDate="2011-10-28T00:00:00"/>
+            <column name="END_DATE" valueDate="2015-03-15T00:00:00"/>
+            <column name="JOB_ID" value="AC_MGR"/>
+            <column name="DEPARTMENT_ID" valueNumeric="110"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="201"/>
+            <column name="START_DATE" valueDate="2014-02-17T00:00:00"/>
+            <column name="END_DATE" valueDate="2017-12-19T00:00:00"/>
+            <column name="JOB_ID" value="MK_REP"/>
+            <column name="DEPARTMENT_ID" valueNumeric="20"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="114"/>
+            <column name="START_DATE" valueDate="2016-03-24T00:00:00"/>
+            <column name="END_DATE" valueDate="2017-12-31T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="122"/>
+            <column name="START_DATE" valueDate="2017-01-01T00:00:00"/>
+            <column name="END_DATE" valueDate="2017-12-31T00:00:00"/>
+            <column name="JOB_ID" value="ST_CLERK"/>
+            <column name="DEPARTMENT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="200"/>
+            <column name="START_DATE" valueDate="2005-09-17T00:00:00"/>
+            <column name="END_DATE" valueDate="2011-06-17T00:00:00"/>
+            <column name="JOB_ID" value="AD_ASST"/>
+            <column name="DEPARTMENT_ID" valueNumeric="90"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="176"/>
+            <column name="START_DATE" valueDate="2016-03-24T00:00:00"/>
+            <column name="END_DATE" valueDate="2016-12-31T00:00:00"/>
+            <column name="JOB_ID" value="SA_REP"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="176"/>
+            <column name="START_DATE" valueDate="2017-01-01T00:00:00"/>
+            <column name="END_DATE" valueDate="2017-12-31T00:00:00"/>
+            <column name="JOB_ID" value="SA_MAN"/>
+            <column name="DEPARTMENT_ID" valueNumeric="80"/>
+        </insert>
+        <insert tableName="JOB_HISTORY">
+            <column name="EMPLOYEE_ID" valueNumeric="200"/>
+            <column name="START_DATE" valueDate="2012-07-01T00:00:00"/>
+            <column name="END_DATE" valueDate="2016-12-31T00:00:00"/>
+            <column name="JOB_ID" value="AC_ACCOUNT"/>
+            <column name="DEPARTMENT_ID" valueNumeric="90"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-7">
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1000"/>
+            <column name="STREET_ADDRESS" value="1297 Via Cola di Rie"/>
+            <column name="POSTAL_CODE" value="00989"/>
+            <column name="CITY" value="Roma"/>
+            <column name="STATE_PROVINCE"/>
+            <column name="COUNTRY_ID" value="IT"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1100"/>
+            <column name="STREET_ADDRESS" value="93091 Calle della Testa"/>
+            <column name="POSTAL_CODE" value="10934"/>
+            <column name="CITY" value="Venice"/>
+            <column name="STATE_PROVINCE"/>
+            <column name="COUNTRY_ID" value="IT"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1200"/>
+            <column name="STREET_ADDRESS" value="2017 Shinjuku-ku"/>
+            <column name="POSTAL_CODE" value="1689"/>
+            <column name="CITY" value="Tokyo"/>
+            <column name="STATE_PROVINCE" value="Tokyo Prefecture"/>
+            <column name="COUNTRY_ID" value="JP"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1300"/>
+            <column name="STREET_ADDRESS" value="9450 Kamiya-cho"/>
+            <column name="POSTAL_CODE" value="6823"/>
+            <column name="CITY" value="Hiroshima"/>
+            <column name="STATE_PROVINCE"/>
+            <column name="COUNTRY_ID" value="JP"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1400"/>
+            <column name="STREET_ADDRESS" value="2014 Jabberwocky Rd"/>
+            <column name="POSTAL_CODE" value="26192"/>
+            <column name="CITY" value="Southlake"/>
+            <column name="STATE_PROVINCE" value="Texas"/>
+            <column name="COUNTRY_ID" value="US"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1500"/>
+            <column name="STREET_ADDRESS" value="2011 Interiors Blvd"/>
+            <column name="POSTAL_CODE" value="99236"/>
+            <column name="CITY" value="South San Francisco"/>
+            <column name="STATE_PROVINCE" value="California"/>
+            <column name="COUNTRY_ID" value="US"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1600"/>
+            <column name="STREET_ADDRESS" value="2007 Zagora St"/>
+            <column name="POSTAL_CODE" value="50090"/>
+            <column name="CITY" value="South Brunswick"/>
+            <column name="STATE_PROVINCE" value="New Jersey"/>
+            <column name="COUNTRY_ID" value="US"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1700"/>
+            <column name="STREET_ADDRESS" value="2004 Charade Rd"/>
+            <column name="POSTAL_CODE" value="98199"/>
+            <column name="CITY" value="Seattle"/>
+            <column name="STATE_PROVINCE" value="Washington"/>
+            <column name="COUNTRY_ID" value="US"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1800"/>
+            <column name="STREET_ADDRESS" value="147 Spadina Ave"/>
+            <column name="POSTAL_CODE" value="M5V 2L7"/>
+            <column name="CITY" value="Toronto"/>
+            <column name="STATE_PROVINCE" value="Ontario"/>
+            <column name="COUNTRY_ID" value="CA"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="1900"/>
+            <column name="STREET_ADDRESS" value="6092 Boxwood St"/>
+            <column name="POSTAL_CODE" value="YSW 9T2"/>
+            <column name="CITY" value="Whitehorse"/>
+            <column name="STATE_PROVINCE" value="Yukon"/>
+            <column name="COUNTRY_ID" value="CA"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2000"/>
+            <column name="STREET_ADDRESS" value="40-5-12 Laogianggen"/>
+            <column name="POSTAL_CODE" value="190518"/>
+            <column name="CITY" value="Beijing"/>
+            <column name="STATE_PROVINCE"/>
+            <column name="COUNTRY_ID" value="CN"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2100"/>
+            <column name="STREET_ADDRESS" value="1298 Vileparle (E)"/>
+            <column name="POSTAL_CODE" value="490231"/>
+            <column name="CITY" value="Bombay"/>
+            <column name="STATE_PROVINCE" value="Maharashtra"/>
+            <column name="COUNTRY_ID" value="IN"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2200"/>
+            <column name="STREET_ADDRESS" value="12-98 Victoria Street"/>
+            <column name="POSTAL_CODE" value="2901"/>
+            <column name="CITY" value="Sydney"/>
+            <column name="STATE_PROVINCE" value="New South Wales"/>
+            <column name="COUNTRY_ID" value="AU"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2300"/>
+            <column name="STREET_ADDRESS" value="198 Clementi North"/>
+            <column name="POSTAL_CODE" value="540198"/>
+            <column name="CITY" value="Singapore"/>
+            <column name="STATE_PROVINCE"/>
+            <column name="COUNTRY_ID" value="SG"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2400"/>
+            <column name="STREET_ADDRESS" value="8204 Arthur St"/>
+            <column name="POSTAL_CODE"/>
+            <column name="CITY" value="London"/>
+            <column name="STATE_PROVINCE"/>
+            <column name="COUNTRY_ID" value="GB"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2500"/>
+            <column name="STREET_ADDRESS" value="Magdalen Centre, The Oxford Science Park"/>
+            <column name="POSTAL_CODE" value="OX9 9ZB"/>
+            <column name="CITY" value="Oxford"/>
+            <column name="STATE_PROVINCE" value="Oxford"/>
+            <column name="COUNTRY_ID" value="GB"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2600"/>
+            <column name="STREET_ADDRESS" value="9702 Chester Road"/>
+            <column name="POSTAL_CODE" value="09629850293"/>
+            <column name="CITY" value="Stretford"/>
+            <column name="STATE_PROVINCE" value="Manchester"/>
+            <column name="COUNTRY_ID" value="GB"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2700"/>
+            <column name="STREET_ADDRESS" value="Schwanthalerstr. 7031"/>
+            <column name="POSTAL_CODE" value="80925"/>
+            <column name="CITY" value="Munich"/>
+            <column name="STATE_PROVINCE" value="Bavaria"/>
+            <column name="COUNTRY_ID" value="DE"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2800"/>
+            <column name="STREET_ADDRESS" value="Rua Frei Caneca 1360 "/>
+            <column name="POSTAL_CODE" value="01307-002"/>
+            <column name="CITY" value="Sao Paulo"/>
+            <column name="STATE_PROVINCE" value="Sao Paulo"/>
+            <column name="COUNTRY_ID" value="BR"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="2900"/>
+            <column name="STREET_ADDRESS" value="20 Rue des Corps-Saints"/>
+            <column name="POSTAL_CODE" value="1730"/>
+            <column name="CITY" value="Geneva"/>
+            <column name="STATE_PROVINCE" value="Geneve"/>
+            <column name="COUNTRY_ID" value="CH"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="3000"/>
+            <column name="STREET_ADDRESS" value="Murtenstrasse 921"/>
+            <column name="POSTAL_CODE" value="3095"/>
+            <column name="CITY" value="Bern"/>
+            <column name="STATE_PROVINCE" value="BE"/>
+            <column name="COUNTRY_ID" value="CH"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="3100"/>
+            <column name="STREET_ADDRESS" value="Pieter Breughelstraat 837"/>
+            <column name="POSTAL_CODE" value="3029SK"/>
+            <column name="CITY" value="Utrecht"/>
+            <column name="STATE_PROVINCE" value="Utrecht"/>
+            <column name="COUNTRY_ID" value="NL"/>
+        </insert>
+        <insert tableName="LOCATIONS">
+            <column name="LOCATION_ID" valueNumeric="3200"/>
+            <column name="STREET_ADDRESS" value="Mariano Escobedo 9991"/>
+            <column name="POSTAL_CODE" value="11932"/>
+            <column name="CITY" value="Mexico City"/>
+            <column name="STATE_PROVINCE" value="Distrito Federal"/>
+            <column name="COUNTRY_ID" value="MX"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Rishikant Kashyap (generated)" id="1780406358616-8">
+        <insert tableName="REGIONS">
+            <column name="REGION_ID" valueNumeric="10"/>
+            <column name="REGION_NAME" value="Europe"/>
+        </insert>
+        <insert tableName="REGIONS">
+            <column name="REGION_ID" valueNumeric="20"/>
+            <column name="REGION_NAME" value="Americas"/>
+        </insert>
+        <insert tableName="REGIONS">
+            <column name="REGION_ID" valueNumeric="30"/>
+            <column name="REGION_NAME" value="Asia"/>
+        </insert>
+        <insert tableName="REGIONS">
+            <column name="REGION_ID" valueNumeric="40"/>
+            <column name="REGION_NAME" value="Oceania"/>
+        </insert>
+        <insert tableName="REGIONS">
+            <column name="REGION_ID" valueNumeric="50"/>
+            <column name="REGION_NAME" value="Africa"/>
+        </insert>
+    </changeSet>
+    <changeSet author="hr-db" id="baseline-data-enable-fks">
+        <sql>
+            ALTER TABLE COUNTRIES ENABLE CONSTRAINT COUNTR_REG_FK;
+            ALTER TABLE LOCATIONS ENABLE CONSTRAINT LOC_C_ID_FK;
+            ALTER TABLE DEPARTMENTS ENABLE CONSTRAINT DEPT_LOC_FK;
+            ALTER TABLE DEPARTMENTS ENABLE CONSTRAINT DEPT_MGR_FK;
+            ALTER TABLE EMPLOYEES ENABLE CONSTRAINT EMP_DEPT_FK;
+            ALTER TABLE EMPLOYEES ENABLE CONSTRAINT EMP_JOB_FK;
+            ALTER TABLE EMPLOYEES ENABLE CONSTRAINT EMP_MANAGER_FK;
+            ALTER TABLE JOB_HISTORY ENABLE CONSTRAINT JHIST_DEPT_FK;
+            ALTER TABLE JOB_HISTORY ENABLE CONSTRAINT JHIST_EMP_FK;
+            ALTER TABLE JOB_HISTORY ENABLE CONSTRAINT JHIST_JOB_FK;
+        </sql>
+    </changeSet>
+</databaseChangeLog>
